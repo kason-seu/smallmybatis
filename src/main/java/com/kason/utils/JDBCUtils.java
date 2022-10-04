@@ -1,6 +1,6 @@
 package com.kason.utils;
 
-import com.kason.annotations.Result;
+import com.kason.annotations.DBField;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -371,34 +371,18 @@ public class JDBCUtils {
                 Field[] beanFields = clz.getDeclaredFields();
                 for (Field beanField : beanFields) {
                     beanField.setAccessible(true);
-                    boolean existsResultAnnotation = beanField.isAnnotationPresent(Result.class);
+                    boolean existsResultAnnotation = beanField.isAnnotationPresent(DBField.class);
                     if (existsResultAnnotation) {
-                        Result resultAnnotation = beanField.getAnnotation(Result.class);
-                        beanField.set(obj, rs.getObject(resultAnnotation.column()));
+                        DBField DBFieldAnnotation = beanField.getAnnotation(DBField.class);
+                        beanField.set(obj, rs.getObject(DBFieldAnnotation.column()));
                     }else {
                         beanField.set(obj, rs.getObject(beanField.getName()));
                     }
                 }
-//                    String methodName = "set"+columnName.substring(0,1).toUpperCase()+
-//                            columnName.substring(1, columnName.length());
-//                    Method method [] = clz.getMethods();
-//                    for (Method meth : method) {
-//                        if(methodName.equals(meth.getName())){
-//                            meth.invoke(obj, rs.getObject(i));
-//                        }
-//                    }
-
                 result.add(obj);
             }
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (InstantiationException | IllegalAccessException | SQLException | IllegalArgumentException |
+                 InvocationTargetException e) {
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
             throw new RuntimeException(e);

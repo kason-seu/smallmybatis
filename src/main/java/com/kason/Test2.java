@@ -1,6 +1,7 @@
 package com.kason;
 
 import com.kason.mapper.ProductCategoryMapper;
+import com.kason.mybatis.SqlSession;
 
 public class Test2 {
 

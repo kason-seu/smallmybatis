@@ -1,4 +1,4 @@
-package com.kason;
+package com.kason.mybatis;
 
 import com.kason.aop.MyInvocationHandlerMyBatis;
 

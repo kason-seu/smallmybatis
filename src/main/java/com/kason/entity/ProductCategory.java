@@ -1,22 +1,22 @@
 package com.kason.entity;
 
-import com.kason.annotations.Result;
+import com.kason.annotations.DBField;
 
 import java.sql.Timestamp;
 
 public class ProductCategory {
 
 
-    @Result(column = "category_id")
+    @DBField(column = "category_id")
     private Integer categoryId;
-    @Result(column = "category_name")
+    @DBField(column = "category_name")
     private String categoryName;
-    @Result(column = "category_type")
+    @DBField(column = "category_type")
     private int categoryType;
-    @Result(column = "create_time")
+    @DBField(column = "create_time")
     private Timestamp createTime;
 
-    @Result(column = "update_time")
+    @DBField(column = "update_time")
     private Timestamp updateTime;
 
     public Integer getCategoryId() {

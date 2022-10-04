@@ -2,6 +2,7 @@ package com.kason;
 
 import com.kason.entity.ProductCategory;
 import com.kason.mapper.ProductCategoryMapper;
+import com.kason.mybatis.SqlSession;
 
 public class Test4 {
 
